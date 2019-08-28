@@ -2,6 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Image ID="Image1" runat="server" Height="428px" Width="891px" />
+    u<asp:Image ID="Image1" runat="server" Height="428px" Width="891px" />
 
 </asp:Content>
