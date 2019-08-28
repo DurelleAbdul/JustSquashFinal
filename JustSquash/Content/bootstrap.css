@@ -1407,13 +1407,13 @@ pre code {
 
 table {
   max-width: 100%;
-  background-color: transparent;
+  background-color: #FFFFFF;
     z-index: 1;
-    left: 594px;
-    top: 77px;
+    left: 760px;
+    top: 166px;
     position: absolute;
-    height: 196px;
-    width: 252px;
+    height: 219px;
+    width: 338px;
 }
 
 th {
