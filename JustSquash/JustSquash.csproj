@@ -202,6 +202,9 @@
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Images\download %281%29.jpg" />
+    <Content Include="Images\download.jpg" />
+    <Content Include="Images\images.jpg" />
     <Content Include="Images\Main form.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
