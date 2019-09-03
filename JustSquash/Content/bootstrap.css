@@ -523,6 +523,7 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
+    position: relative;
 }
 
 h4,
@@ -1409,7 +1410,7 @@ table {
   max-width: 100%;
   background-color: #FFFFFF;
     z-index: 1;
-    left: 760px;
+    left: 759px;
     top: 166px;
     position: absolute;
     height: 219px;
