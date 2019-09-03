@@ -6,66 +6,62 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Configuration;
+using System.IO;
+using System.Data.Entity;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace JustSquash
 {
     public partial class About : Page
     {
-        private string connect_string = "server=den1.mysql5.gear.host;user id=Runtime Error;password=Runner*#;persistsecurityinfo=True;database=runtimeerror;SslMode=none";
+        public string connect_string = "server=den1.mysql5.gear.host;user id=runtimeerror;password=Runner*#;persistsecurityinfo=True;database=runtimeerror;SslMode=none";
+        public MySqlConnection connection;
+        public MySqlCommand command;
 
-        private MySqlConnection connection;
-        private MySqlCommand command;
-        private string query;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             connection = new MySqlConnection(connect_string);
-
         }
 
         protected void btnProcess_Click(object sender, EventArgs e)
         {
-            string date = calDate.ToString();
-            string time = txtTime.Text;
-            string venue = txtVenue.Text;
-            string memberType = cmdMember.ToString();
-            string firstName = txtFname.Text;
-            string lastName = txtLname.Text;
-            string id = txtID.Text;
-            string contactNum = txtContact.Text;
-            string email = txtEmail.Text;
-
-
-           
-
-            date.Substring(0, 10);
-           
             try
             {
+                //string connect_string = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+               
 
-
-                command.CommandText = "Insert_booking";
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                command.Parameters.Add(new MySqlParameter("@bDate", MySqlDbType.VarChar)).Value = date;
-                command.Parameters.Add(new MySqlParameter("@time", MySqlDbType.VarChar)).Value = time;
-                command.Parameters.Add(new MySqlParameter("@room", MySqlDbType.VarChar)).Value = venue;
-                command.Parameters.Add(new MySqlParameter("@member_type", MySqlDbType.VarChar)).Value = memberType;
-                
-                command.Parameters.Add(new MySqlParameter("@id", MySqlDbType.Int32)).Value = id;
-                command.Parameters.Add(new MySqlParameter("@fname", MySqlDbType.VarChar)).Value = firstName;
-                command.Parameters.Add(new MySqlParameter("@lname", MySqlDbType.VarChar)).Value = lastName;
-                command.Parameters.Add(new MySqlParameter("@phone", MySqlDbType.VarChar)).Value = contactNum;
-                command.Parameters.Add(new MySqlParameter("@email_address", MySqlDbType.VarChar)).Value = email;
-
-
+                // Database db = new SqlDatabase(ConnectionStr);
+                connection = new MySqlConnection(connect_string);
                 connection.Open();
-                command.ExecuteNonQuery();
-                
+                command.CommandText = "Book_now";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                // command = connect_string.GetStoredProcCommand("Book_now")
+                {
+
+                    command.Parameters.Add(new MySqlParameter("@Id_No", MySqlDbType.VarChar)).Value = txtID.Text;
+                    command.Parameters.Add(new MySqlParameter("@First_Name", MySqlDbType.VarChar)).Value = txtFname.Text;
+                    command.Parameters.Add(new MySqlParameter("@Last_Name", MySqlDbType.VarChar)).Value = txtLname.Text;
+
+
+
+
+
+
+                    //connection.Open();
+                    command.ExecuteNonQuery();
+
+                   // db.ExecuteNonQuery(dbcmd);
+                }
             }
-            catch (Exception error)
+            catch (SqlException Excptn_BookConfirmData)
             {
-           
+                throw Excptn_BookConfirmData;
             }
+
+
         }
     }
 }
