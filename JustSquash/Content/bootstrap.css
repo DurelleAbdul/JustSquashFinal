@@ -1411,7 +1411,7 @@ table {
     z-index: 1;
     left: 760px;
     top: 166px;
-    position: absolute;
+    position: relative;
     height: 219px;
     width: 338px;
 }
