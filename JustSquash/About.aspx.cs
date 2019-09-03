@@ -6,19 +6,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace JustSquash
 {
     public partial class About : Page
     {
-        private string connect_string = "server=den1.mysql5.gear.host;user id=Runtime Error;password=Runner*#;persistsecurityinfo=True;database=runtimeerror;SslMode=none";
+        //private string connect_string = "server=den1.mysql5.gear.host;user id=runtimeerror;password=Runner*;database=runtimeerror";
 
-        private MySqlConnection connection;
-        private MySqlCommand command;
+        //private MySqlConnection connection;
+        //private MySqlCommand command;
         private string query;
         protected void Page_Load(object sender, EventArgs e)
         {
-            connection = new MySqlConnection(connect_string);
+//connection = new MySqlConnection(connect_string);
 
         }
 
@@ -38,24 +39,28 @@ namespace JustSquash
            
 
             date.Substring(0, 10);
-           
-            try
+
+            string connectionString = "server=den1.mysql5.gear.host;user id=runtimeerror;password=Runner*;database=runtimeerror";
+            using (MySqlConnection cn = new MySqlConnection(connectionString))
+            {
+                MySqlCommand cmd = new MySqlCommand("Book_now", cn);
+                cmd.CommandType = CommandType.StoredProcedure;3
+                    tx
+            }
+
+            /**try
             {
 
-
-                command.CommandText = "Insert_booking";
+            
+                command.CommandText = "Book_now";
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.Add(new MySqlParameter("@bDate", MySqlDbType.VarChar)).Value = date;
-                command.Parameters.Add(new MySqlParameter("@time", MySqlDbType.VarChar)).Value = time;
-                command.Parameters.Add(new MySqlParameter("@room", MySqlDbType.VarChar)).Value = venue;
-                command.Parameters.Add(new MySqlParameter("@member_type", MySqlDbType.VarChar)).Value = memberType;
+                
                 
                 command.Parameters.Add(new MySqlParameter("@id", MySqlDbType.Int32)).Value = id;
                 command.Parameters.Add(new MySqlParameter("@fname", MySqlDbType.VarChar)).Value = firstName;
                 command.Parameters.Add(new MySqlParameter("@lname", MySqlDbType.VarChar)).Value = lastName;
-                command.Parameters.Add(new MySqlParameter("@phone", MySqlDbType.VarChar)).Value = contactNum;
-                command.Parameters.Add(new MySqlParameter("@email_address", MySqlDbType.VarChar)).Value = email;
+                
 
 
                 connection.Open();
@@ -65,7 +70,7 @@ namespace JustSquash
             catch (Exception error)
             {
            
-            }
+            }**/
         }
     }
 }
