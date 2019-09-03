@@ -11,14 +11,17 @@ namespace JustSquash
 {
     public partial class About : Page
     {
-        private string connect_string = "server=den1.mysql5.gear.host;user id=RuntimeError;password=Runner*;persistsecurityinfo=True;database=runtimeerror;SslMode=none";
+        MySqlCommand cmd;
+        MySqlDataReader reader;
+        MySqlDataAdapter adapter;
+        String queryStr;
+        MySqlConnection conn;
 
-        private MySqlConnection connection;
-        private MySqlCommand command;
-        private string query;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            connection = new MySqlConnection(connect_string);
+            
 
         }
 
@@ -26,41 +29,44 @@ namespace JustSquash
         {
             try
             {
-                string firstName = txtFname.Text;
-                string lastName = txtLname.Text;
-                string id = txtID.Text;
-                //string connect_string = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+                conn = new MySqlConnection("server =den1.mysql5.gear.host; user id =runtimeerror; database=runtimeerror; password=Runner*");
 
-
-                // Database db = new SqlDatabase(ConnectionStr);
-                // connection = new MySqlConnection(connect_string);
-
-                command.CommandText = "Book_now";
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                // command = connect_string.GetStoredProcCommand("Book_now")
-
-                
                
+
+
+
+                adapter = new MySqlDataAdapter();
+                String sql = "server =den1.mysql5.gear.host; user id =runtimeerror; database=runtimeerror; password=Runner*";
+
+                sql = "Insert into booking(venue,client_type,id_no,first_name,last_name,contact_no,email) values('" + txtVenue.Text + "','"+ cmdMember.Text + "','" + txtID.Text + "','" + txtFname.Text+ "','" + txtLname.Text + "','" + txtContact.Text + "','" + txtEmail.Text + "')";
+                conn.Open();
+
+
+                cmd = new MySqlCommand(sql, conn);
+                adapter.InsertCommand = new MySqlCommand(sql, conn);
+                adapter.InsertCommand.ExecuteNonQuery();
+
+                cmd.Dispose();
+
+
+
+
+
+               
+
+
+
                 
 
-
-                command.Parameters.Add(new MySqlParameter("@id", MySqlDbType.VarChar)).Value = id;
-                command.Parameters.Add(new MySqlParameter("@fname", MySqlDbType.VarChar)).Value = firstName;
-                command.Parameters.Add(new MySqlParameter("@lname", MySqlDbType.VarChar)).Value = lastName;
-
-                connection.Open();
-                command.ExecuteNonQuery();
+               
 
             }
-            catch (Exception )
+            catch (SystemException)
             {
+               
+            }
 
-                
-            }
-            finally
-            {
-                connection.Close();
-            }
+            conn.Close();
         }
     }
 }
