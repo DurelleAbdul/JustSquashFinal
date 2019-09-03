@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Configuration;
 using System.Web.UI.WebControls;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -12,14 +11,14 @@ namespace JustSquash
 {
     public partial class About : Page
     {
-        string dbConnection = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+        private string connect_string = "server=den1.mysql5.gear.host;user id=Runtime Error;password=Runner*#;persistsecurityinfo=True;database=runtimeerror;SslMode=none";
 
         private MySqlConnection connection;
         private MySqlCommand command;
         private string query;
         protected void Page_Load(object sender, EventArgs e)
         {
-            connection = new MySqlConnection(dbConnection);
+            connection = new MySqlConnection(connect_string);
 
         }
 
@@ -65,10 +64,8 @@ namespace JustSquash
             }
             catch (Exception error)
             {
-                
+           
             }
-          
-            
         }
     }
 }

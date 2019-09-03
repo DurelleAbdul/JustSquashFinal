@@ -39,7 +39,7 @@
     </h3>
     <h3>&nbsp;&nbsp;
         <asp:Label ID="Label6" runat="server" style="font-style: italic; color: #FFFFFF;" Text="First Name"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="txtFname" runat="server"></asp:TextBox>
     </h3>
     <h3>&nbsp;&nbsp;
