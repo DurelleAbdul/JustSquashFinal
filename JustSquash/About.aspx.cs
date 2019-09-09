@@ -31,9 +31,9 @@ namespace JustSquash
             {
                 conn = new MySqlConnection("server =den1.mysql5.gear.host; user id =runtimeerror; database=runtimeerror; password=Runner*");
 
-               
 
 
+                
 
                 adapter = new MySqlDataAdapter();
                 String sql = "server =den1.mysql5.gear.host; user id =runtimeerror; database=runtimeerror; password=Runner*";
