@@ -14,7 +14,18 @@ namespace JustSquash
 
         }
 
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        
+        protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/about.aspx");
+        }
+        
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
 
         }
